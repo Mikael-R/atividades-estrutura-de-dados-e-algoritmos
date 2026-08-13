@@ -12,9 +12,18 @@ int main() {
   cout << "Matriz:" << endl;
 
   for (int x = 0; x < 3; x++) {
+    int soma_x = 0;
+
     for (int y = 0; y < 3; y++) {
-      cout << matriz[x][y] << " ";
+      soma_x += matriz[x][y];
+
+      cout << matriz[x][y];
+
+      if (y < 2) {
+        cout << "+";
+      }
     }
-    cout << endl;
+
+    cout << "=" << soma_x << endl;
   }
 }
