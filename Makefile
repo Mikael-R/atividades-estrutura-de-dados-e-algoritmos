@@ -11,12 +11,7 @@ run:
 		exit 1; \
 	fi
 	$(CXX) "$(SRC)" -o "$(OUT)"
-	@perl -MTime::HiRes=time -e ' \
-		my $$start = time(); \
-		my $$code = system(@ARGV); \
-		printf("\nTempo de execução: %.4f s\n", time() - $$start); \
-		exit($$code == -1 ? 127 : $$code >> 8); \
-	' "./$(OUT)"
+	@RUN_CMD="./$(OUT)" perl -MTime::HiRes=time -e 'my $$s=time(); my $$c=system($$ENV{RUN_CMD}); printf("\nTempo de execução: %.4f s\n", time()-$$s); exit($$c==-1?127:$$c>>8)'
 
 clean:
 	@find . -name '*.out' -type f -delete
